@@ -1,0 +1,11 @@
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">List of dates</h6>
+    <ng-container *ngIf="listDate?.length > 0">
+        <ng-container *ngFor="let date of listDate; let i=index">
+            <app-list-item [date]="date" [userId]="i"></app-list-item>
+        </ng-container>
+    </ng-container>
+    <small class="d-block text-right mt-3">
+    <a href="https://reactjs.org/" target="_blank">React</a>
+  </small>
+</div>
