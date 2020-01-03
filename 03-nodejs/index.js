@@ -16,17 +16,30 @@ $ node utils/seed.js
 `);
 
 const express = require('express');
+const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// parse applicattion /x-www/form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
+require('./config/config');
+app.use(cors());
+app.use(require('./config/headers'));
+
+app.use(require('./routes/indexRoutes'));
 
 // Setup database
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/mediastream-challenge');
-const User = require('./models/User');
+mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (err, resp) => {
+    if (err) console.log(err);
+    console.log('DB Connection sucessfully', process.env.URL_DB);
+});
 
-// Setup Express.js app
-const app = express();
-
-// TODO
-
-app.listen(3000);
+app.listen(process.env.PORT, () => {
+    console.log(`Escuchando en el puerto ${process.env.PORT}`);
+});
