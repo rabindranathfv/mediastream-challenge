@@ -1,5 +1,6 @@
 'use strict';
 
+const { Parser } = require('json2csv');
 // models
 const UserModel = require('../models/User');
 
@@ -16,9 +17,12 @@ const getUsers = async(req, res, start, limit) => {
                     err
                 });
             }
-            res.set('Content-Type', 'application/octet-stream');
-            res.attachment('usersFinal.csv')
-            res.send(usersLists);
+
+            let fields = ['_id', 'name', 'email'];
+            const json2csvParser = new Parser({ fields });
+            const csv = json2csvParser.parse(usersLists);
+            res.attachment('usersList.csv');
+            res.status(200).send(csv);
             /*
             UserModel.countDocuments({}, (err, numUsers) => {
                 res.json({
