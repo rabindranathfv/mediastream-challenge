@@ -10,6 +10,7 @@ We don't care which hats are.
 You can use lodash/underscore (recommended)
 
 What is the complexity in O() notation of time and space?
+ANSWER --> es una forma matematica de medir que tan rapido crece un algoritmo en tiempo y espacio, lo cual indica cuantas operaciones realiza y que tan eficiente es.
 
 IMPORTANT: Find a balance between performance and legibility (more important).
 
@@ -31,7 +32,27 @@ const assert = require('assert');
 const database = require('./database.json');
 
 
-const total = 0 // TODO
+let total = 0 // TODO
+const filterHats = {};
+// part 1
+const hatsList = database.map(items => items.hats).filter(hats => hats.length > 0);
+
+// part 2
+hatsList.forEach(element => {
+    element.forEach((item) => {
+        filterHats[item.id] = (filterHats[item.id] || 0) + 1;
+    });
+});
+
+// part 3
+total = Object.values(filterHats).sort((current, prev) => prev - current).slice(0, 3).reduce((current, prev) => current + prev);
+
+console.log(` Big O notation results
+    Part 1 Map and filter  0(n) + 0(n)
+    Part 2 O(n^2)
+    Part 3 O(n) + O(n) + O(n)
+`)
+
 
 // Throws error on failure
 assert.equal(total, 23, `Invalid result: ${total} != 23`);
