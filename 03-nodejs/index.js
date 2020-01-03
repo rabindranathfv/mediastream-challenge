@@ -28,5 +28,4 @@ const User = require('./models/User');
 const app = express();
 
 // TODO
-
 app.listen(3000);
