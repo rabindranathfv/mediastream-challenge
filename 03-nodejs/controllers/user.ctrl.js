@@ -1,7 +1,6 @@
 'use stric';
 
 const userService = require('../services/user.service');
-const _ = require('underscore');
 
 const getUsers = async(req, res) => {
     // route /users?limit=<value>&start=<value>
