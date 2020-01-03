@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list-item',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
 
+  @Input() date: any;
+  @Input() userId: any;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.date);
+    console.log(this.userId);
   }
 
 }
