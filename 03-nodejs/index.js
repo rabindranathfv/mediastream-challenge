@@ -43,3 +43,16 @@ mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: tr
 app.listen(process.env.PORT, () => {
     console.log(`Escuchando en el puerto ${process.env.PORT}`);
 });
+
+console.log(` REMENBER TO ADD A .env file inside config folder, follow this sample
+NODE_ENV=dev
+DB_HOST=localhost
+HOST=localhost
+PORT=3000
+DB_NAME=mediastream-challenge
+DB_PORT=27017
+SEED=token-seed-dev
+TIME_TOKEN=12h
+
+later you can use npm run start-dev
+`);
