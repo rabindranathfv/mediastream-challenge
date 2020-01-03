@@ -3,7 +3,13 @@
     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <strong class="d-block text-gray-dark">@username {{ userId }}</strong> Using pipes for dates
         <strong class="d-block text-left mt-3">
-                <span >{{ date | date: 'M/d/yy' }}</span>
+                <a class="link-date" (click)="showAlert(userId)">{{ date | date: 'M/d/yy' }}</a>
         </strong>
     </p>
+
+    <ng-container *ngIf="showInfo">
+        <div class="alert alert-primary" role="alert">
+            Alert you has been click on item {{ userId }}
+        </div>
+    </ng-container>
 </div>

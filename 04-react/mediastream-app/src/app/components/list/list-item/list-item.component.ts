@@ -9,12 +9,23 @@ export class ListItemComponent implements OnInit {
 
   @Input() date: any;
   @Input() userId: any;
+  showInfo: boolean;
 
-  constructor() { }
+  constructor() {
+    this.showInfo = false;
+   }
 
   ngOnInit() {
-    console.log(this.date);
-    console.log(this.userId);
+  }
+
+  /**
+   * showAlert
+   */
+  public showAlert(id) {
+    this.showInfo = !this.showInfo;
+    setTimeout(() => {
+      this.showInfo = !this.showInfo;
+    }, 2000);
   }
 
 }
