@@ -16,6 +16,10 @@ const getUsers = async(req, res, start, limit) => {
                     err
                 });
             }
+            res.set('Content-Type', 'application/octet-stream');
+            res.attachment('usersFinal.csv')
+            res.send(usersLists);
+            /*
             UserModel.countDocuments({}, (err, numUsers) => {
                 res.json({
                     ok: true,
@@ -24,6 +28,7 @@ const getUsers = async(req, res, start, limit) => {
                     user: usersLists
                 });
             });
+            */
         });
 
 }
